@@ -4,6 +4,8 @@ require 'captain_hook'
 require 'spec'
 require 'spec/autorun'
 
+require 'rubygems'
+require 'grit'
 Spec::Runner.configure do |config|
   
 end
