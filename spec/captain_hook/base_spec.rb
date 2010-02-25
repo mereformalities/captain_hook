@@ -12,13 +12,13 @@ describe CaptainHook::Base do
         @yielded = nil
         @args = "sha1 sha2 refree"
         $stdin.stub!(:read).and_return(@args)
-        
-        @hook.handle_post_receive do |event|
-          @yielded = event
-        end
       end
-      it "should yield a CaptainHook::PostReceiveEvent" do
-        @yielded.should be_an_instance_of(CaptainHook::PostReceiveEvent)
+      
+      it "should call run on a CaptainHook::DSL::HandlePostReceive" do
+        dsl = mock()
+        CaptainHook::DSL::HandlePostReceive.stub!(:new).and_return(dsl)
+        dsl.should_receive(:run)
+        @hook.handle_post_receive {}
       end
       
       it "should use $stdin to parse args" do

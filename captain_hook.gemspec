@@ -26,8 +26,11 @@ Gem::Specification.new do |s|
      "captain_hook.gemspec",
      "lib/captain_hook.rb",
      "lib/captain_hook/base.rb",
+     "lib/captain_hook/dsl.rb",
+     "lib/captain_hook/dsl/handle_post_receive.rb",
      "lib/captain_hook/post_receive_event.rb",
      "spec/captain_hook/base_spec.rb",
+     "spec/captain_hook/dsl/handle_post_receive_spec.rb",
      "spec/captain_hook/post_receive_event_spec.rb",
      "spec/captain_hook_spec.rb",
      "spec/spec.opts",
@@ -40,6 +43,7 @@ Gem::Specification.new do |s|
   s.summary = %q{A ruby manager for git hooks}
   s.test_files = [
     "spec/captain_hook/base_spec.rb",
+     "spec/captain_hook/dsl/handle_post_receive_spec.rb",
      "spec/captain_hook/post_receive_event_spec.rb",
      "spec/captain_hook_spec.rb",
      "spec/spec_helper.rb"

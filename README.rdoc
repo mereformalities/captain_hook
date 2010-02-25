@@ -8,12 +8,11 @@ A ruby library for managing git hooks.
 your_repo/.git/hooks/post-receive:
   #! /usr/bin/env ruby
   
-  @hook = CaptainHook.from_path("../../"))
-  @room = Campfire.room(@room_id)
+  @hook = CaptainHook.from_path(File.join(File.dirname(__FILE__), "..",".."))
 
-  @hook.handle_post_receive do |post_receive|
-    message_lines = post_receive.new_commit.message.split("\n")
-    @room.message "New commit (producer): '#{message_lines[0]}' by #{post_receive.new_commit.author} to #{post_receive.ref_name}"
+  @hook.handle_post_receive do
+    @room = Campfire.room(1)
+    @room.message "New commit: '#{message}' by #{author} to #{ref_name}"
   end
 
 == Note on Patches/Pull Requests

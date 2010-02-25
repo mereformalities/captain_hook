@@ -39,7 +39,7 @@ describe CaptainHook::PostReceiveEvent do
     
   end
   
-  context "#commits" do
+  describe "#commits" do
     it "should expose commits between old and new" do
       @repo.stub!(:commits_between).and_return(%w{id ego})
       subject.commits.should == %w{id ego}
@@ -55,6 +55,37 @@ describe CaptainHook::PostReceiveEvent do
     it "should get the commits from old -> new" do
       @repo.should_receive(:commits_between).with(@new_commit, @old_commit)
       subject.commits
+    end
+  end
+  
+  context "convenience api" do
+    before(:each) do
+      message = <<EOM
+this message is going to be long
+
+i mean really long
+and longer
+EOM
+      subject.stub!(:new_commit).and_return(mock(:message => message))
+    end
+    
+    describe "#author" do
+      it "should return new_commit.author" do
+        subject.stub!(:new_commit).and_return(mock(:author => "Kurt Vonnegut"))
+        subject.author.should == "Kurt Vonnegut"
+      end
+    end
+    
+    describe "#message" do
+      it "should return the first line of new_commit#message" do
+        subject.message.should == "this message is going to be long"
+      end
+    end
+    
+    describe "#message_detail" do
+      it "should return lines 1.. of the new_commit#message" do
+        subject.message_detail.should == "i mean really long\nand longer"
+      end
     end
   end
 end
