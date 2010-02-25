@@ -1,6 +1,20 @@
 = captain_hook
 
-Description goes here.
+A ruby library for managing git hooks.
+
+== Usage
+
+=== A post-receive hook sending to campfire (using your favorite campfire lib)
+your_repo/.git/hooks/post-receive:
+  #! /usr/bin/env ruby
+  
+  @hook = CaptainHook.from_path("../../"))
+  @room = Campfire.room(@room_id)
+
+  @hook.handle_post_receive do |post_receive|
+    message_lines = post_receive.new_commit.message.split("\n")
+    @room.message "New commit (producer): '#{message_lines[0]}' by #{post_receive.new_commit.author} to #{post_receive.ref_name}"
+  end
 
 == Note on Patches/Pull Requests
  

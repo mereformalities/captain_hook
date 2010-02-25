@@ -1,4 +1,5 @@
 require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+
 describe CaptainHook::Base do
   context "with a valid repo" do
     before(:each) do
@@ -7,7 +8,7 @@ describe CaptainHook::Base do
     end
 
     describe :handle_post_receive do
-      before(:each) do
+      before(:each) do        
         @yielded = nil
         @args = "sha1 sha2 refree"
         $stdin.stub!(:read).and_return(@args)
@@ -21,13 +22,20 @@ describe CaptainHook::Base do
       end
       
       it "should use $stdin to parse args" do
-        CaptainHook::PostReceiveEvent.should_receive(:new).
-          with({:old_sha => "sha1",
+        CaptainHook::PostReceiveEvent.
+          should_receive(:new).
+          with({
+            :old_sha => "sha1",
             :new_sha => "sha2",
-            :ref_name => "refree"})
+            :ref_name => "refree",
+            :repo => @repo
+          })
+            
         @hook.handle_post_receive
       end
     end
+    
+    
   end
   
 end

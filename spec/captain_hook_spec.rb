@@ -3,10 +3,10 @@ require File.expand_path(File.dirname(__FILE__) + '/spec_helper')
 describe "CaptainHook" do
   describe "CaptainHook.from_path" do
     before(:each) do
-      Grit.stub!(:new)
+      Grit::Repo.stub!(:new)
     end
     it "should create a grit repo based on the path" do
-      Grit.should_receive(:new).with('foo')
+      Grit::Repo.should_receive(:new).with('foo')
       c = CaptainHook.from_path('foo')
     end    
     
