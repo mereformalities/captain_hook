@@ -4,15 +4,17 @@ A ruby library for managing git hooks.
 
 == Usage
 
-=== A post-receive hook sending to campfire (using your favorite campfire lib)
+=== A post-receive hook sending to campfire (tinder)
 your_repo/.git/hooks/post-receive:
   #! /usr/bin/env ruby
+  require 'captain_hook'
+  require 'tinder'
   
-  @hook = CaptainHook.from_path(File.join(File.dirname(__FILE__), "..",".."))
+  hook = CaptainHook.from_path("../../")
 
-  @hook.handle_post_receive do
-    @room = Campfire.room(1)
-    @room.message "New commit: '#{message}' by #{author} to #{ref_name}"
+  hook.handle_post_receive do
+    room = MyCampfire.my_room
+    room.speak "New commit: '#{message}' by #{author} to #{ref_name}"
   end
 
 == Note on Patches/Pull Requests
