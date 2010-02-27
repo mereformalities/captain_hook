@@ -3,8 +3,8 @@ require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 describe CaptainHook::DSL::HandlePostReceive do
   before(:each) do
     @event = mock('post_receive_event',
-      :message => "hey hey, mama",
-      :author => "zeppelin",
+      :message  => "hey hey, mama",
+      :author   => "zeppelin",
       :ref_name => "misty mountain hop"
     )
   end

@@ -19,6 +19,14 @@ module CaptainHook
         commit.author
       end
       
+      # The diff string from the commit
+      # Concatenates all of the sub-diffs into one string
+      def diff
+        @diff ||= begin
+          commit.diffs.collect{|diff| diff.diff}.join("\n")
+        end
+      end
+      
       def ref_name
         @ref_name ||= @repo.head.name
       end
