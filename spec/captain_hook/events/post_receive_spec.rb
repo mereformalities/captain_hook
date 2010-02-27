@@ -1,6 +1,6 @@
-require File.expand_path(File.dirname(__FILE__) + '/../spec_helper')
+require File.expand_path(File.dirname(__FILE__) + '/../../spec_helper')
 
-describe CaptainHook::PostReceiveEvent do
+describe CaptainHook::Events::PostReceive do
   before(:each) do
     @repo = mock('repo')
     @ref_name = 'refs/heads/master'
@@ -11,7 +11,7 @@ describe CaptainHook::PostReceiveEvent do
   end
   
   subject { 
-    CaptainHook::PostReceiveEvent.new(
+    CaptainHook::Events::PostReceive.new(
       :old_sha => "oldsha",
       :new_sha => "newsha",
       :ref_name => @ref_name,
