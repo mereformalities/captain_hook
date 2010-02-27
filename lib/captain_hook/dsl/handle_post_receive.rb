@@ -6,7 +6,6 @@ module CaptainHook
       end
 
       def message
-        puts "post-receive: #{@post_receive_event.message}"
         @post_receive_event.message
       end
       
