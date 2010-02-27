@@ -1,6 +1,8 @@
 module CaptainHook
   module DSL
     class HandlePostReceive
+      include Base
+      
       def initialize(post_receive_event)
         @post_receive_event = post_receive_event
       end
@@ -15,11 +17,7 @@ module CaptainHook
       
       def author
         @post_receive_event.author
-      end
-      
-      def run &block
-        instance_eval &block
-      end
+      end      
     end
   end
 end

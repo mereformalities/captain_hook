@@ -1,6 +1,7 @@
 module CaptainHook
   module DSL
     class HandlePostCommit
+      include Base
       def initialize(event)
         @event = event
       end
@@ -17,9 +18,6 @@ module CaptainHook
         @event.ref_name
       end
       
-      def run &block
-        instance_eval &block
-      end
         
     end
   end
