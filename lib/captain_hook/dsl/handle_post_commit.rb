@@ -23,6 +23,9 @@ module CaptainHook
         @event.ref_name
       end
       
+      def sha
+        @event.sha
+      end
         
     end
   end

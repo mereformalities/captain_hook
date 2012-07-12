@@ -19,6 +19,10 @@ module CaptainHook
         commit.author
       end
       
+      def sha
+        commit.sha
+      end
+      
       # The diff string from the commit
       # Concatenates all of the sub-diffs into one string
       def diff
